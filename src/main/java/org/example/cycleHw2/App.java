@@ -13,7 +13,7 @@ public class App {
     }
 
     public static int cycle() {
-        int num = -1;
+        int num = 0;
         int sum = 0;
         System.out.println("Введите целое полложительное число");
         while (true) {
@@ -21,16 +21,16 @@ public class App {
                 num = scanner.nextInt();
                 if (num < 0) {
                     System.out.println("Число не может быть отрицательным. Повторите ввод");
-                    scanner.next();
                 }
+                else {
 
-                sum = IntStream.range(0, num)
-                        .filter(i -> i % 2 != 0)
-                        .sum();
+                    sum = IntStream.range(0, num)
+                            .filter(i -> i % 2 != 0)
+                            .sum();
 
-                scanner.close();
-                return sum;
-
+                    scanner.close();
+                    return sum;
+                }
             } else {
                 System.out.println("Некорректные данные. Повторите ввод");
                 scanner.next();
