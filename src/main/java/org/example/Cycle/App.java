@@ -14,47 +14,37 @@ public class App {
 
 
     public static int[] createArray() {
-        int size = -1;
+        int size;
         int[] array = null;
 
         while (true) {
-
             System.out.println("Указжите размер массива: ");
 
-            if (scanner.hasNextInt()) {
-                size = scanner.nextInt();
-                if (size > 0) {
-                    array = new int[size];
-
-
-                    for (int i = 0; i < array.length; i++) {
-                        System.out.println("Укажите " + (i + 1) + " элемент массива: ");
-                        while (size != 0) {
-                            if (!scanner.hasNextInt()) {
-                                System.out.println("Некорректное значение. Введите целое число: ");
-                                scanner.next();
-                            } else {
-                                array[i] = scanner.nextInt();
-                                size--;
-                            }
-                            break;
-                        }
-                        if (size == 0) {
-                            System.out.println(Arrays.toString(array));
-                        }
-
-                    }
-                } else {
-                    System.out.println("Размер массива должен быть целым положительным числом. Повторите ввод: ");
-                }
+            if (scanner.hasNextInt() && (size = scanner.nextInt()) > 0) {
+                array = new int[size];
+                break;
             } else {
-                System.out.println("Некорректное значение. Введите целое число: ");
+                System.out.println("Некорректное значение. Введите целое число больше нуля: ");
                 scanner.next();
             }
-            break;
+        }
+
+
+        for (int i = 0; i < array.length; i++) {
+            while (true) {
+                System.out.println("Укажите " + (i + 1) + " элемент массива: ");
+                if (scanner.hasNextInt()) {
+                    array[i] = scanner.nextInt();
+                    break;
+                } else {
+                    System.out.println("Некорректное значение. Введите целое число: ");
+                    scanner.next();
+                }
+            }
         }
         return array;
     }
+
 
     public static boolean compareArrayWithConstant(int[] array) {
         int x = (int) (Math.random() * 10);
